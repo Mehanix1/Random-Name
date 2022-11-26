@@ -1,9 +1,8 @@
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self) -> None:
         super().__init__()
         self._should_draw = False
-        self._coordinates = 0, 0
-        uic.loadUi('window.ui', self)
+        self.setupUi(self)
         self._init_ui()
         self._should_draw = False
 
@@ -24,7 +23,7 @@ class MainWindow(QMainWindow):
         qr.end()
 
     def draw_circle(self, qr):
-        qr.setBrush(QColor('yellow'))
+        qr.setBrush(QColor.fromHsv(randint(0, 359), 255, 255, 255))
         diameter = randint(70, 200)
         start = 60
         qr.drawEllipse(start, start, start + diameter, start + diameter)
